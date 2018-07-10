@@ -13,14 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/rest")
 public class SvgEmitterController {
 	
-	@RequestMapping(value = "/svg", method = RequestMethod.GET)
-	@ResponseBody
-	public String svg() throws IOException {
-		File file = new File("scatter.svg");
-		String content = new String(Files.readAllBytes(file.toPath()));
-		return content;
-	}
-	
 	@RequestMapping(value = "/text", method = RequestMethod.GET, produces="text/html")
 	@ResponseBody
 	public String text() throws IOException {
