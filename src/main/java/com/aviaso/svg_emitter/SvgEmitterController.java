@@ -10,26 +10,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/rest")
 public class SvgEmitterController {
 	
-	@RequestMapping(value = "/rest/svg", method = RequestMethod.GET, produces="text/html")
+	@RequestMapping(value = "/svg", method = RequestMethod.GET)
 	@ResponseBody
 	public String svg() throws IOException {
-		return getSvg();
+		File file = new File("scatter.svg");
+		String content = new String(Files.readAllBytes(file.toPath()));
+		return content;
 	}
 	
-	@RequestMapping(value = "/rest/text", method = RequestMethod.GET, produces="text/html")
+	@RequestMapping(value = "/text", method = RequestMethod.GET, produces="text/html")
 	@ResponseBody
 	public String text() throws IOException {
-		File file = new File("E:\\oxygen-workspace\\svg-emitter\\long.txt");
+		File file = new File("long.txt");
 		String content = new String(Files.readAllBytes(file.toPath()));
 		return content;
 	}
 
-	protected String getSvg() throws IOException {
-//		File file = new File("C:\\Users\\H216313\\workspace-git\\gwt-test2\\scatter.svg");
-//		String content = new String(Files.readAllBytes(file.toPath()));
-		return "asd";
+	@RequestMapping(value = "/test", method = RequestMethod.GET, produces="text/html")
+	@ResponseBody
+	public String test() throws IOException {
+		return "test";
 	}
 
 }
